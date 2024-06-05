@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Umss">
+  <meta property="og:title" content="AVSET-10M: An Open Large-Scale Audio-Visual Dataset with High Correspondence"/>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">    
+  
+  <title>AVSET-10M</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/audio-table.css">
+  <link rel="stylesheet" type="text/css" href="static/css/dropdown_style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <style>
+        /* body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        } */
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+        }
+        .secone_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .row {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        .category {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+            flex: 1;
+        }
+        .category-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .video-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .video-item {
+            width: 300px;
+            height: 220px;
+            margin: 10px;
+            text-align: center;
+        }
+        .video-item video {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+        .confidence {
+            font-size: 14px;
+            margin-top: 8px;
+            color: #555;
+        }
+        .divider {
+            border-left: 2px dashed #ccc;
+            height: auto;
+            align-self: stretch;
+            margin: 0 20px;
+        }
+        @media (max-width: 768px) {
+            .video-item {
+                width: 100%;
+                height: auto;
+            }
+            .video-item video {
+                height: auto;
+            }
+            .row {
+                flex-direction: column;
+            }
+            .divider {
+                border-left: none;
+                border-top: 2px dashed #ccc;
+                width: 100%;
+                height: auto;
+                margin: 20px 0;
+            }
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            text-align: left;
+            width: 100%;
+            padding-left: 20px;
+        }
+        .videos-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .video-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+        .video-row .video-item {
+            flex: 0 0 18%; /* Ensure five videos fit in one row with some spacing */
+            margin: 10px; /* Add margin to ensure spacing between videos */
+            text-align: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #000; /* Set background color to black */
+            border: none;
+            border-radius: 20px; /* Increase border-radius for smoother corners */
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .btn svg {
+            margin-left: 8px;
+            fill: #fff; /* Set icon color to white */
+        }
+        .navsize {
+            font-size: 18px;
+        }
+        .margin-left {
+            margin-left: 20px;
+        }
+        .btndes {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 id="co-speech-modalities" class="title is-1 publication-title">
+                            AVSET-10M: An Open Large-Scale Audio-Visual Dataset with High Correspondence
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+	  
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                        <div class="content has-text-justified">
+                            <p> 
+                                Groundbreaking research from initiatives such as ChatGPT and Sora has underscored the crucial role of large-scale data in advancing generative and comprehension tasks. However, the absence of comprehensive, large-scale audio-visual datasets with high correspondence has posed a significant challenge in fields such as video dubbing and audio-visual retrieval. To address this gap, we introduce <b>AVSET-10M</b>,
+                                a high-correspondence audio-visual dataset comprising 10 million samples, offering these fundamental features:
+                                (1) <b>Audio-Visual Correspondence</b>: Through meticulous data filtering, we ensure robust correspondence between the audio and visual components of each dataset entry.
+                            
+                                (2) <b>Large Scale</b>: With 10 million samples, AVSET-10M is the largest publicly available audio-visual correspondence dataset.
+                            
+                                (3) <b>Comprehensive Categories</b>: Encompassing 527 unique audio categories, AVSET-10M offers the most extensive range of audio categories available.
+                            
+                                We have benchmarked two critical tasks on AVSET-10M: audio-visual retrieval and visual query-based sound separation. These tasks highlight the essential role of precise audio-visual correspondence in advancing multimedia research.</p>  
+                        </div>
+                        <a class="btn  navsize margin-left btndes" href="https://github.com/AVSET-10M/avset-10m" role="button">
+                            <span style="color: white">Code</span> 
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 496 512">
+                                <style>svg{fill:#fdfcfc}</style>
+                                <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                            </svg>
+                        </a>
+                        <a class="btn  navsize margin-left btndes" href="https://github.com/AVSET-10M/avset-10m" role="button">
+                            <span style="color: white">Data</span>   
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                <path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"></path>
+                            </svg>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-3">AVSET-10M</h1>
+            <h2><a href="#Main-Result">A. Samples of AVSET-10M</a></h2>
+
+            <h2><a href="#Sound_Separation">B. Samples Recycled with Sound Separation</a></h2>
+
+            <h2><a href="#Bad_Sample">C. Samples Filtered Out</a></h2>
+            </ul>
+        </div>
+    </div>
+    </section>
+
+    <section class="hero">
+    <div class="hero-body">
+    <div class="container">
+    <h1 id="Main-Result" class="title is-3">Samples of AVSET-10M</h1>
+            <div class="secone_container"> 
+                <!-- row 1 -->   
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Acoustic environment</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Acoustic environment/oHULhatTU.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 55.18%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Acoustic environment/YSTTQkLP0w.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 56.91%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Alarm</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Alarm/5o4C4ZtHSU.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 53.71%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Alarm/cK_mzY5wo.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 53.02%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 2 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Bell</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Bell/aVgyfbIy0o.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 44.89%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Bell/WnieUd6J5E.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 42.68%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Deformable shell</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Deformable shell/kP74j6djis.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 42.28%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Deformable shell/mRdezNuxTA.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 38.41%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 3 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Digestive</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Digestive/07EzBghspZE.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 32.71%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Digestive/4wthmfwlwQ.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 37.19%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Domestic animals, pets</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Domestic animals, pets/n6rtB7rMuo.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 49.26%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Domestic animals, pets/NTIidjslmY.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 52.02%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 4 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Domestic sounds, home sounds</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Domestic sounds, home sounds/6AOy8GAMpM.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 52.72%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Domestic sounds, home sounds/klrkvfrYXU.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 51.35%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Engine</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Engine/gNXQh2uTpI.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 51.76%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Engine/T6HGBLb1xA.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 51.39%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 5 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Explosion</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Explosion/1Hu_O-dosg.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 42.51%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Explosion/LjSlTMvYkk.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 36.46%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Fire</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Fire/C3rrh6dDjE.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 41.43%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Fire/lRAHCsCM60.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 19.87%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 6 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Generic impact sounds</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Generic impact sounds/b2Yy6IDIRI.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 45.82%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Generic impact sounds/S2uUIwqz74.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.69%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Glass</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Glass/H3wbcBge-U.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 50.41%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Glass/kSietzTlv0.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 23.42%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 7 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Hands</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Hands/2JdarA4EBBU.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.81%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Hands/2QmTg9MlkOY.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 41.91%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Heart sounds, heartbeat</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Heart sounds, heartbeat/ckXXn9qvXo.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 33.82%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Heart sounds, heartbeat/DKuErIgJJU.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 17.25%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- row 8 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Human group actions</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Human group actions/LWeExpJai4.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 52.72%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Human group actions/IqjVd6nmWY.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 50.62%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Human locomotion</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Human locomotion/H4tPZGMCZo.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 46.17%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Human locomotion/klXBZvskWQ.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.66%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 9 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Human voice</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Human voice/17Hz99AYo.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 59.12%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Human voice/f2eU8t9IOE.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 58.64%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Liquid</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Liquid/GJk0c7CF-4.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 37.48%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Liquid/XDG9C9FNw8.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 33.03%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- row 10 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Livestock, farm animals, working animals</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Livestock, farm animals, working animals/bTFWFcUjNA.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 48.88%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Livestock, farm animals, working animals/ibyOdhBlOk.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 52.63%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Mechanisms</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Mechanisms/VLvsWVHKRc.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 39.88%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Mechanisms/VTBdhWKWcg.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 38.76%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 11 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Miscellaneous sources</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Miscellaneous sources/DmlHdfo-Mk.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 42.34%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Miscellaneous sources/yCGUs46y4.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 44.19%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Music genre</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Music genre/7XxJM9Ybis.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 54.27%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Music genre/QZQKizHOLs.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 57.18%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 12 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Music mood</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Music mood/GYwAv2geeE.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 50.34%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Music mood/jf0qP0P0.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 53.01%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Music role</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Music role/7qQeh2y6zg.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 51.95%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Music role/lL6_CJpfaU.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 52.95%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- row 13 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Musical concepts</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Musical concepts/0lLVet6szM.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 54.35%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Musical concepts/b_zveHUF04.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 40.08%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Musical instrument</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Musical instrument/E2MNnK1ixs.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 56.03%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Musical instrument/InTByrRozc.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 55.94%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- row 14 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Noise</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Noise/Vc88DKbPOE.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.91%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Noise/ZAf8cwtP9o.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 52.32%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Onomatopoeia</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Onomatopoeia/WMTRTwH0k8.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 53.84%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Onomatopoeia/lVl_chI7No.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 53.31%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 15 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Other sourceless</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Other sourceless/6oOusP-Zjw.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 45.86%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Other sourceless/f-yzwXLzMA.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 51.01%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Respiratory sounds</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Respiratory sounds/8flXZsAQNQ.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 37.23%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Respiratory sounds/de-a0MlWgA.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 46.11%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <!-- row 16 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Silence</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Silence/GB9OL7pf-E.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 44.46%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Silence/iGr_xpHqCk.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 34.18%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Sound reproduction</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Sound reproduction/cFqw1Zeutk.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 51.47%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Sound reproduction/Yefb2XeH1Q.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 50.21%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 17 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Specific impact sounds</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Specific impact sounds/3-uw-w5Mi0.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.16%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Specific impact sounds/RYQN6bHb-E.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 46.25%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Surface contact</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Surface contact/dBev30wCc.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 45.65%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Surface contact/NOsBnC55CY.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 38.39%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- row 18 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Thunderstorm</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Thunderstorm/1zoYJVhzDGc.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 37.72%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Thunderstorm/IpGWTs7ckQ.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 41.68%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Tools</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Tools/6HOn5dVQqI.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 46.23%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Tools/nBE4nJr3aM.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.26%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 19 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Vehicle</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Vehicle/0JqTq_4jaE.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 53.71%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Vehicle/F04zBMt2Qs.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 55.48%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Water</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Water/5-yp2MZl8c.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 47.72%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Water/8ju6V8B5Oc.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 45.78%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- row 20 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Whistling</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Whistling/FhECaRA_Gc（0.4611）.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 46.11%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Whistling/kuMTfwyoQ0（0.3019）.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 30.19%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Wild animals</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Wild animals/b_s4tL-z8k.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 45.42%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Wild animals/CF4IxIbcCk.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 38.56%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- row 21 -->
+                <div class="row">
+                    <div class="category">
+                        <div class="category-name">Wind</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Wind/BPxYc16VZ4.mp4"" controls></video>
+                                <div class="confidence">AV Similarity: 48.28%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Wind/msC_WOqyFY.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 44.53%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="category">
+                        <div class="category-name">Wood</div>
+                        <div class="video-container">
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Wood/7RIj2V4Dn8.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 44.27%</div>
+                            </div>
+                            <div class="video-item">
+                                <video src="assets/sectionOne/Wood/N2L7AZAQlo.mp4" controls></video>
+                                <div class="confidence">AV Similarity: 41.96%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+    </div>
+    </div>
+    </section>
+
+    <section class="hero">
+    <div class="hero-body">
+    <div class="container">
+    <h1 id="Sound_Separation" class="title is-3">Samples Recycled with Sound Separation</h1>
+        <div class="videos-section">
+                <div class="section-title">Raw video <span class="secotion_2">(with voice-overs)</span></div>
+                <div class="video-row">
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/pre_0awng26xQ8.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/pre_0RUcq5tkNU.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/pre_0ZQBaRcpi0.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/pre_1N_2yXqh90.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/pre_2qRkifkT08.mp4" controls></video>
+                    </div>
+                </div>
+        
+                <div class="section-title">Raw video <span class="secotion_3">(after sound separation)</span></div>
+                <div class="video-row">
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/post_0awng26xQ8.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/post_0RUcq5tkNU.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/post_0ZQBaRcpi0.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/post_1N_2yXqh90.mp4" controls></video>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionTwo/post_2qRkifkT08.mp4" controls></video>
+                    </div>
+                </div>
+        </div>
+
+        <div class="videos-section">
+            <div class="section-title">Raw video <span class="secotion_2">(with voice-overs)</span></div>
+            <div class="video-row">
+                <div class="video-item">
+                    <video src="assets/sectionTwo/pre_bST39f90.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/pre_dr8rXrv8k.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/pre_e0Vu_ruTc.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/pre_EjZvjjv4k.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/pre_rBe2ZPpzY.mp4" controls></video>
+                </div>
+            </div>
+        
+            <div class="section-title">Raw video <span class="secotion_3">(after sound separation)</span></div>
+            <div class="video-row">
+                <div class="video-item">
+                    <video src="assets/sectionTwo/post_bST39f90.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/post_dr8rXrv8k.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/post_e0Vu_ruTc.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/post_EjZvjjv4k.mp4" controls></video>
+                </div>
+                <div class="video-item">
+                    <video src="assets/sectionTwo/post_rBe2ZPpzY.mp4" controls></video>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <style>
+        .filtered-out {
+            color: red;
+            text-decoration: line-through;
+        }
+        .secotion_2{
+            color: red;
+        }
+        .secotion_3{
+            color: green;
+        }
+    </style>
+
+    <section class="hero">
+        <div class="hero-body">
+        <div class="container">
+        <h1 id="#Bad_Sample" class="title is-3">Samples <span class="filtered-out">(Filtered Out)</span></h1>
+            <div class="videos-section">
+                <div class="video-row">
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/18-DJ76IaQ.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.41%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/3b5grRXXoY.mp4" controls></video>
+                        <div class="confidence">AV Similarity: -0.01%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/AiHynA102I.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.03%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/B68bRDzQi8.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.03%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/bP0g8Pk0W.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.01%</div>
+                    </div>
+                </div>
+                <div class="video-row">
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/bTXJzMe3mo.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.02%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/C2fgwf0vg.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.13%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/dDwiiKYA94.mp4" controls></video>
+                        <div class="confidence">AV Similarity: -0.01%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/DkbIkX1-rg.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.08%</div>
+                    </div>
+                    <div class="video-item">
+                        <video src="assets/sectionThree/10/jhHWth9VvY.mp4" controls></video>
+                        <div class="confidence">AV Similarity: 0.11%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </section>
+</body>
